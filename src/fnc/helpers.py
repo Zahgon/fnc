@@ -57,8 +57,7 @@ class Container(object):
             self.unhashable.append(value)
 
     def extend(self, values):
-        for value in values:
-            self.add(value)
+        pass
 
 
 def iscollection(value):

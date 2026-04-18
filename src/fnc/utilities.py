@@ -39,12 +39,7 @@ def after(method):
 
     def decorator(func):
         @wraps(func)
-        def decorated(*args, **kwargs):
-            result = func(*args, **kwargs)
-            method()
-            return result
-
-        return decorated
+        pass
 
     return decorator
 
@@ -132,11 +127,7 @@ def before(method):
 
     def decorator(func):
         @wraps(func)
-        def decorated(*args, **kwargs):
-            method()
-            return func(*args, **kwargs)
-
-        return decorated
+        pass
 
     return decorator
 
@@ -182,11 +173,7 @@ def compose(*funcs):
     funcs = tuple(partial(*func) if isinstance(func, tuple) else func for func in funcs)
 
     def _compose(*args, **kwargs):
-        result = None
-        for func in funcs:
-            result = func(*args, **kwargs)
-            args, kwargs = (result,), {}
-        return result
+        pass
 
     return _compose
 
@@ -631,35 +618,6 @@ def retry(  # noqa: C901
 
     def decorator(func):
         @wraps(func)
-        def decorated(*args, **kargs):
-            delay_time = delay
-
-            for attempt in range(1, attempts + 1):
-                # pylint: disable=catching-non-exception
-                try:
-                    return func(*args, **kargs)
-                except exceptions as exc:
-                    if on_exception:
-                        exc.retry = {"attempt": attempt}
-                        on_exception(exc)
-
-                    if attempt == attempts:
-                        raise
-
-                    if jitter:
-                        delay_time += max(0, random(*jitter))
-
-                    if delay_time < 0:  # pragma: no cover
-                        continue
-
-                    if max_delay:
-                        delay_time = min(delay_time, max_delay)
-
-                    time.sleep(delay_time)
-
-                    # Scale after first iteration.
-                    delay_time *= scale
-
-        return decorated
+        pass
 
     return decorator

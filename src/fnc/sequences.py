@@ -274,7 +274,7 @@ def filter(iteratee, seq):
     Yields:
         Filtered elements.
     """
-    return _filter(fnc.iteratee(iteratee), seq)
+    pass
 
 
 def find(iteratee, seq):
@@ -708,7 +708,7 @@ def map(iteratee, *seqs):
     Yields:
         Mapped elements.
     """
-    return _map(fnc.iteratee(iteratee), *seqs)
+    pass
 
 
 def mapcat(iteratee, *seqs):
